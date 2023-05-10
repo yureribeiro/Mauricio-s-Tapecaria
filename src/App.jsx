@@ -3,21 +3,25 @@ import InstaIcon from './images/instagram-logo.svg'
 import FaceIcon from './images/facebook-logo.svg'
 import Sofasemfundo from './images/sofamoderno.png'
 import Qrcode from './images/qrcode.png'
-import ilustraform from './images/ilustra-form.png'
-import { GoogleMap, useJsApiLoader, Marker } from '@react-google-maps/api';
 
+import image1 from './imagensGaleria/1.png'
+import image3 from './imagensGaleria/3.png'
+import image4 from './imagensGaleria/4.png'
+import envelope from './imagensGaleria/envelope.png'
+
+import { GoogleMap, useJsApiLoader, Marker } from '@react-google-maps/api';
+import { Link, animateScroll as scroll } from "react-scroll";
 import './App.css';
 
 function App() {
   // instalar lib de email, e configurar as funções 
-
+  
   const { isLoaded } = useJsApiLoader({
     id: 'google-map-script',
     googleMapsApiKey: "AIzaSyAxNWPnioU_3UK-UZtDWK6SP2zpGDu1uhU"
   })
 
   const position = {lat: -16.679096, lng: -49.268367}
-
 
   return (
     <div className="App">
@@ -28,10 +32,46 @@ function App() {
         className='logo'
         />
         <nav className='nav'>
-          <a href="inicio" className='link'>INÍCIO</a>
-          <a href="#" className='link'>SOBRE</a>
-          <a href="#" className='link'>LOCAL</a>
-          <a href="#" className='link'>CONTATO</a>
+          <Link 
+          className='link' 
+          to='inicio'
+          spy={true}
+          smooth={true}
+          offset={-70}>
+            INÍCIO
+          </Link>
+          <Link 
+          className='link' 
+          to='inicio'
+          spy={true}
+          smooth={true}
+          offset={-70}>
+            GALERIA
+          </Link>
+          <Link
+          className='link' 
+          to='sobre'
+          spy={true}
+          smooth={true}
+          offset={-70}>
+            SOBRE
+          </Link>
+          <Link
+          className='link' 
+          to='contato'
+          spy={true}
+          smooth={true}
+          offset={-70}
+          >CONTATO
+          </Link>
+          <Link          
+          className='link' 
+          to='local'
+          spy={true}
+          smooth={true}
+          offset={-70}
+          >LOCAL
+          </Link>
         </nav>
         <div className='icons'>
           <img src={InstaIcon} alt="icone instagram" />
@@ -39,55 +79,26 @@ function App() {
         </div>
       </header>
 
-      <section className='inicio'>
+      <section className='inicio' id='inicio'>
         <div className='container-titulo'>
-        <h1 className='titulo'>Especializada em <br /> reforma de estofado</h1>
-        <button className='button-titulo'>Orçamento</button>
+        <h1 className='titulo'>Especializada em <br /> reforma de estofado <br /> e decorações</h1>
+        <button className='button-titulo'>ORÇAMENTO</button>
         </div>
         <img src={Sofasemfundo} alt="sofa moderno" className='sofamoderno'/>
       </section>
 
       <section className='cards'>
-        <p className='p1'>Criamos</p>
-        <p className='p2'>Reformamos</p>
-        <p className='p3'>e Concertamos</p>
-        <div className='cards-images'>
-
-          <div className='card'>
-            <div className='poltronas'>
-              {/* img css */}
-            </div>
-            <h3>Poltronas</h3>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. A accusantium aspernatur, numquam nulla iure et!</p>
-          </div>
-
-          <div className='card'>
-            <div className='sofalaranja'>
-              {/* img css */}
-            </div>
-            <h3>Sofás</h3>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. A accusantium aspernatur, numquam nulla iure et!</p>
-          </div>
-
-          <div className='card'>
-            <div className='sofacinza'>
-            {/* img css */}
-            </div>
-            <h3>Tapeçaria</h3>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. A accusantium aspernatur, numquam nulla iure et!</p>
-          </div>
-
-          <div className='card'>
-            <div className='puffs'>
-            {/* img css */}
-            </div>
-            <h3>Mais</h3>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. A accusantium aspernatur, numquam nulla iure et!</p>
-          </div>
+        <p className='title-cards'>Criamos, Reformamos e Consertamos</p>
+        <div className='container-image-cards'>
+          <img src={image1} alt="" className='image-cards' />
+          <img src={image3} alt="" className='image-cards' />
+          <img src={image4} alt="" className='image-cards' />
         </div>
+        <strong>Confira nossa galeria e serviços</strong>
+        <button className='button-cards'>GALERIA</button>
       </section>
 
-      <section className='quem-somos'>
+      <section className='quem-somos' id='sobre'>
         <div className='quem-somos-container'>
           <div className='container-texto'>
              <h1>Quem Somos?</h1>
@@ -98,13 +109,13 @@ function App() {
               </p>
           </div>
           <div className='qrCode'>
-            <p>Acompanhe no Instagram</p>
+            <p>INSTAGRAM</p>
             <img src={Qrcode} alt="qrcode" className='qrcodeimg' />
           </div>
         </div>
       </section>
 
-      <section className='formsection'>
+      <section className='formsection' id='contato'>
         <div className='divform'>
           <h1>Contato</h1>
         <form className='form'>
@@ -132,14 +143,13 @@ function App() {
            rows="10"
            placeholder="Digite sua mensagem"
            ></textarea>
-           <button className='buttonform'>Enviar</button>
+           <button className='buttonform'>ENVIAR</button>
         </form>
         </div>
-        <img src={ilustraform} alt="homen lendo um formulario" className='imagem-form'/>
+        <img src={envelope} alt="homen lendo um formulario" className='imagem-form'/>
       </section>
 
-
-      <section className='local'>
+      <section className='local' id='local'>
         <div className='mapa'>
         {isLoaded ? (
           <GoogleMap
